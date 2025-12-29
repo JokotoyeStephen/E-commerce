@@ -10,19 +10,29 @@
 
   <!-- Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+  .primary-btn{
+    background:#f2d04e;
+    color:#280b08;
+  }
+
+  .primary-btn:hover{
+    background:#e6c23d;
+  }
+</style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-[#f9e7c9] text-[#280b08]">
 
 <!-- ================= HEADER ================= -->
-<header class="bg-white shadow-sm sticky top-0 z-50">
+<header class="bg-[#f9e7c9] shadow-sm sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
 
     <!-- Logo -->
-    <div class="flex items-center gap-2">
-      <i class="fa-solid fa-bag-shopping text-blue-600 text-2xl"></i>
-      <span class="text-xl font-bold text-blue-600">eTrade</span>
-    </div>
+   <div class="flex items-center gap-2">
+  <i class="fa-solid fa-bag-shopping text-[#8B4513] text-2xl"></i>
+  <span class="text-xl font-bold text-[#8B4513]">eTrade</span>
+</div>
 
     <!-- Search -->
     <div class="hidden md:flex flex-1 mx-6">
@@ -107,7 +117,7 @@
         <div>
           <span class="text-pink-500 font-semibold text-sm">Smartwatch</span>
           <h1 class="text-4xl font-bold mt-2">Delux Brand Watch</h1>
-          <button class="mt-6 inline-flex items-center gap-2 text-blue-600 font-medium">
+          <button class="primary-btn px-4 py-2 rounded">
             Shop Now <i class="fa fa-arrow-right"></i>
           </button>
         </div>
@@ -134,8 +144,354 @@
 
     </div>
   </section>
+
+  
 </main>
 
+  
+        <!-- Features Section -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose <span class="gradient-text">TechSecure</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Premium electronics backed by our exclusive guarantee policies</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
+                    <div class="feature-icon tech-gradient text-white">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">100% Quality Guarantee</h3>
+                    <p class="text-gray-600 mb-4">Every product undergoes rigorous testing for performance and durability</p>
+                    <div class="inline-flex items-center text-sm text-purple-600 font-medium">
+                        <i class="fas fa-check-circle mr-2"></i> Certified Electronics
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
+                    <div class="feature-icon bg-gradient-to-r from-green-500 to-emerald-500 text-white">
+                        <i class="fas fa-redo"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">24-Hour Return Policy</h3>
+                    <p class="text-gray-600 mb-4">Not satisfied? Return within 24 hours for a full refund, no questions asked</p>
+                    <div class="inline-flex items-center text-sm text-emerald-600 font-medium">
+                        <i class="fas fa-clock mr-2"></i> Fast Processing
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
+                    <div class="feature-icon bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Next Level Pro Delivery</h3>
+                    <p class="text-gray-600 mb-4">Same-day delivery for premium members with installation support</p>
+                    <div class="inline-flex items-center text-sm text-blue-600 font-medium">
+                        <i class="fas fa-bolt mr-2"></i> Lightning Fast
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
+                    <div class="feature-icon bg-gradient-to-r from-orange-500 to-red-500 text-white">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">On Product Policy</h3>
+                    <p class="text-gray-600 mb-4">Extended warranty and dedicated support for every product purchased</p>
+                    <div class="inline-flex items-center text-sm text-orange-600 font-medium">
+                        <i class="fas fa-headset mr-2"></i> 24/7 Support
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Product Categories -->
+        <section class="mb-12">
+            <div class="flex flex-wrap gap-3 mb-8">
+                <div class="category-chip active bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-2 rounded-full font-medium">
+                    All Products
+                </div>
+                <div class="category-chip bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-full font-medium hover:border-purple-500 hover:text-purple-600">
+                    Smartphones
+                </div>
+                <div class="category-chip bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-full font-medium hover:border-purple-500 hover:text-purple-600">
+                    Laptops
+                </div>
+                <div class="category-chip bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-full font-medium hover:border-purple-500 hover:text-purple-600">
+                    Audio & Headphones
+                </div>
+                <div class="category-chip bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-full font-medium hover:border-purple-500 hover:text-purple-600">
+                    Smart Watches
+                </div>
+                <div class="category-chip bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-full font-medium hover:border-purple-500 hover:text-purple-600">
+                    Gaming
+                </div>
+            </div>
+        </section>
+        
+        <!-- New Arrivals Section -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">This Week's <span class="gradient-text">New Arrivals</span></h2>
+                    <p class="text-gray-600">Latest tech gadgets with exclusive launch discounts</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-gray-700 font-medium">Offer ends in:</span>
+                        <div class="flex space-x-2">
+                            <div class="countdown-box">
+                                <div class="text-white font-bold text-lg">23</div>
+                                <div class="text-gray-300 text-xs">HRS</div>
+                            </div>
+                            <div class="countdown-box">
+                                <div class="text-white font-bold text-lg">45</div>
+                                <div class="text-gray-300 text-xs">MIN</div>
+                            </div>
+                            <div class="countdown-box">
+                                <div class="text-white font-bold text-lg">32</div>
+                                <div class="text-gray-300 text-xs">SEC</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-2xl overflow-hidden">
+                    <div class="relative">
+                        <div class="h-56 bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
+                            <div class="text-center">
+                                <div class="w-32 h-32 bg-gradient-to-r from-blue-200 to-purple-200 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                                    <i class="fas fa-laptop text-5xl text-gray-700"></i>
+                                </div>
+                                <span class="font-bold text-gray-800 text-lg">ProBook X1</span>
+                            </div>
+                        </div>
+                        <div class="discount-badge bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg">
+                            20% OFF
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-gray-900">Quantum Laptop Pro</h3>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 font-medium">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Intel i9 • 32GB RAM • 2TB SSD • RTX 4080</p>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center mb-2">
+                                <div class="chip-icon bg-blue-100 text-blue-600">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">Ryzen 9 7900X</div>
+                                    <div class="text-xs text-gray-500">Processor</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="chip-icon bg-purple-100 text-purple-600">
+                                    <i class="fas fa-memory"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">32GB DDR5</div>
+                                    <div class="text-xs text-gray-500">RAM</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-2xl text-gray-900">$1,849.99</span>
+                                <span class="text-gray-400 line-through ml-2">$2,312.49</span>
+                            </div>
+                            <button class="tech-gradient text-white p-3 rounded-xl hover:opacity-90 transition shadow-md">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-2xl overflow-hidden">
+                    <div class="relative">
+                        <div class="h-56 bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center p-4">
+                            <div class="text-center">
+                                <div class="w-32 h-32 bg-gradient-to-r from-green-200 to-emerald-200 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                                    <i class="fas fa-headphones text-5xl text-gray-700"></i>
+                                </div>
+                                <span class="font-bold text-gray-800 text-lg">AudioMax Pro</span>
+                            </div>
+                        </div>
+                        <div class="discount-badge bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg">
+                            15% OFF
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-gray-900">Noise Cancelling Headphones</h3>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 font-medium">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">40mm Drivers • 30hr Battery • ANC • Bluetooth 5.3</p>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center mb-2">
+                                <div class="chip-icon bg-green-100 text-green-600">
+                                    <i class="fas fa-volume-up"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">Hi-Res Audio</div>
+                                    <div class="text-xs text-gray-500">Sound Quality</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="chip-icon bg-emerald-100 text-emerald-600">
+                                    <i class="fas fa-battery-full"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">30 Hours</div>
+                                    <div class="text-xs text-gray-500">Battery Life</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-2xl text-gray-900">$279.99</span>
+                                <span class="text-gray-400 line-through ml-2">$329.40</span>
+                            </div>
+                            <button class="tech-gradient text-white p-3 rounded-xl hover:opacity-90 transition shadow-md">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-2xl overflow-hidden">
+                    <div class="relative">
+                        <div class="h-56 bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-4">
+                            <div class="text-center">
+                                <div class="w-32 h-32 bg-gradient-to-r from-purple-200 to-pink-200 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                                    <i class="fas fa-mobile-alt text-5xl text-gray-700"></i>
+                                </div>
+                                <span class="font-bold text-gray-800 text-lg">Fusion Z3</span>
+                            </div>
+                        </div>
+                        <div class="discount-badge bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg">
+                            30% OFF
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-gray-900">Flagship Smartphone</h3>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 font-medium">4.7</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">6.8" AMOLED • 200MP Camera • 12GB RAM • 512GB</p>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center mb-2">
+                                <div class="chip-icon bg-purple-100 text-purple-600">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">200MP Main</div>
+                                    <div class="text-xs text-gray-500">Camera</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="chip-icon bg-pink-100 text-pink-600">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">Snapdragon 8 Gen 2</div>
+                                    <div class="text-xs text-gray-500">Processor</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-2xl text-gray-900">$899.99</span>
+                                <span class="text-gray-400 line-through ml-2">$1,285.70</span>
+                            </div>
+                            <button class="tech-gradient text-white p-3 rounded-xl hover:opacity-90 transition shadow-md">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-2xl overflow-hidden">
+                    <div class="relative">
+                        <div class="h-56 bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center p-4">
+                            <div class="text-center">
+                                <div class="w-32 h-32 bg-gradient-to-r from-orange-200 to-red-200 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                                    <i class="fas fa-gamepad text-5xl text-gray-700"></i>
+                                </div>
+                                <span class="font-bold text-gray-800 text-lg">GameForce Pro</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold py-2 px-4 rounded-full shadow-lg">
+                                <i class="fas fa-shipping-fast mr-2"></i> Next Level Pro
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-gray-900">Gaming Console Pro</h3>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 font-medium">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">8K Gaming • 1TB SSD • 120FPS • Ray Tracing</p>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center mb-2">
+                                <div class="chip-icon bg-orange-100 text-orange-600">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">120 FPS</div>
+                                    <div class="text-xs text-gray-500">Performance</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="chip-icon bg-red-100 text-red-600">
+                                    <i class="fas fa-expand-alt"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">8K Ready</div>
+                                    <div class="text-xs text-gray-500">Resolution</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-2xl text-gray-900">$499.99</span>
+                                <span class="text-gray-400 text-sm ml-2">+ Free Game Bundle</span>
+                            </div>
+                            <button class="tech-gradient text-white p-3 rounded-xl hover:opacity-90 transition shadow-md">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      
 <!-- ================= JS INTERACTIONS ================= -->
 <script>
   // Example: future dropdown or slider logic can go here
