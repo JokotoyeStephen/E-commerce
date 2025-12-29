@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Details - eTrade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<!-- Header -->
+<div class="bg-white shadow p-4 flex justify-between items-center">
+  <h1 class="text-2xl font-bold text-green-600">eTrade</h1>
+  <a href="shop.html" class="text-blue-500">← Back to Shop</a>
+</div>
+
+<!-- Product Section -->
+<div class="max-w-6xl mx-auto p-6 bg-white mt-6 rounded-lg shadow grid md:grid-cols-2 gap-8">
+
+  <!-- LEFT: Image -->
+  <div class="relative">
+    <span class="absolute top-3 left-3 bg-blue-600 text-white text-sm px-3 py-1 rounded">
+      20% OFF
+    </span>
+
+    <img id="productImage"
+      src="https://via.placeholder.com/500"
+      class="w-full rounded-lg">
+  </div>
+
+  <!-- RIGHT: Details -->
+  <div>
+    <h2 id="productName" class="text-3xl font-bold mb-2">
+      Leather Bag For Men
+    </h2>
+
+    <div class="flex items-center mb-4 text-yellow-400">
+      ★★★★☆
+    </div>
+
+    <div class="flex items-center gap-4 mb-4">
+      <span id="newPrice" class="text-2xl font-bold text-green-600">$40</span>
+      <span id="oldPrice" class="text-gray-400 line-through">$50</span>
+    </div>
+
+    <p class="text-gray-600 mb-6">
+      High quality premium leather bag suitable for work and casual use.
+      Durable, stylish and affordable.
+    </p>
+
+    <!-- Quantity -->
+    <div class="flex items-center gap-4 mb-6">
+      <button onclick="decreaseQty()"
+        class="bg-gray-200 px-3 py-1 rounded">-</button>
+
+      <span id="quantity">1</span>
+
+      <button onclick="increaseQty()"
+        class="bg-gray-200 px-3 py-1 rounded">+</button>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex gap-4">
+      <button onclick="addToCart()"
+        class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition">
+        Add to Cart
+      </button>
+
+      <button class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">
+        Buy Now
+      </button>
+    </div>
+
+    <!-- Seller Info -->
+    <div class="mt-8 border-t pt-4">
+      <h3 class="font-semibold mb-2">Seller Information</h3>
+      <p>Seller Name: <span class="font-medium">Stephen Stores</span></p>
+      <p>Rating: ★★★★☆</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let quantity = 1;
+
+function increaseQty(){
+  quantity++;
+  document.getElementById("quantity").innerText = quantity;
+}
+
+function decreaseQty(){
+  if(quantity > 1){
+    quantity--;
+    document.getElementById("quantity").innerText = quantity;
+  }
+}
+
+function addToCart(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let product = {
+    name: document.getElementById("productName").innerText,
+    price: 40,
+    quantity: quantity
+  };
+
+  cart.push(product);
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert("Product added to cart!");
+}
+</script>
+
+</body>
+</html>
