@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product — Kata Kara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    .primary-btn{background:#f2d04e;color:#280b08}.primary-btn:hover{background:#e6c23d}.dark-btn{background:#280b08;color:#f9e7c9}.dark-btn:hover{background:#3d1209}.card-hover{transition:transform .2s,box-shadow .2s}.card-hover:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(40,11,8,.12)}#toast{transition:opacity .3s,transform .3s}
+    .product-img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      max-height: 380px;
+    }
+  </style>
+</head>
+<body class="bg-[#f9e7c9] text-[#280b08]">
+
+<!-- Your header script – make sure it does not conflict -->
+<script src="../js/header.js"></script>
+
+<div class="max-w-7xl mx-auto px-4 py-6">
+  <!-- Breadcrumb -->
+  <div class="text-sm text-gray-500 mb-6">
+    <a href="../index.html" class="hover:text-[#280b08]">Home</a> 
+    <i class="fa fa-chevron-right text-xs mx-1"></i> 
+    <a href="shop.html" class="hover:text-[#280b08]">Shop</a> 
+    <i class="fa fa-chevron-right text-xs mx-1"></i> 
+    <span id="breadProduct" class="font-medium text-[#280b08]">Product</span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+    <!-- IMAGE SECTION (fixed to show real product image) -->
+    <div class="bg-gradient-to-r from-amber-100 to-white rounded-2xl shadow flex items-center justify-center p-4" style="min-height:380px">
+      <img id="prodImage" class="product-img rounded-xl object-contain" alt="Product image" src="https://placehold.co/600x400?text=Loading...">
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div>
+      <span id="prodBadge" class="inline-block bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold uppercase mb-3"></span>
+      <h1 id="prodName" class="text-2xl md:text-3xl font-bold text-[#280b08]">Loading...</h1>
+      <p id="prodSeller" class="text-gray-500 text-sm mt-1"><i class="fa fa-store mr-1"></i></p>
+
+      <div class="flex items-center gap-2 mt-3" id="prodStars"></div>
+
+      <div class="flex items-end gap-3 mt-4">
+        <span id="prodPrice" class="text-3xl font-bold text-blue-700"></span>
+        <span id="prodOld" class="text-gray-400 text-lg line-through"></span>
+        <span id="prodDiscount" class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded"></span>
+      </div>
+
+      <p class="text-sm text-gray-500 mt-4 leading-relaxed" id="prodDesc">Premium quality product from a verified Kata Kara seller. Ships within 24 hours nationwide.</p>
+
+      <!-- Quantity -->
+      <div class="flex items-center gap-3 mt-6">
+        <span class="text-sm font-semibold">Qty:</span>
+        <div class="flex items-center border border-[#280b08]/20 rounded-lg overflow-hidden">
+          <button onclick="changeQty(-1)" class="px-3 py-2 hover:bg-amber-50 text-sm font-bold">-</button>
+          <span id="qtyDisplay" class="px-4 py-2 text-sm font-semibold border-x border-[#280b08]/20">1</span>
+          <button onclick="changeQty(1)" class="px-3 py-2 hover:bg-amber-50 text-sm font-bold">+</button>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex gap-3 mt-6 flex-wrap">
+        <button onclick="handleAddCart()" class="dark-btn px-8 py-3 rounded-full font-semibold text-sm flex items-center gap-2">
+          <i class="fa fa-shopping-cart"></i> Add to Cart
+        </button>
+        <button onclick="handleBuyNow()" class="primary-btn px-8 py-3 rounded-full font-semibold text-sm flex items-center gap-2">
+          <i class="fa fa-bolt"></i> Buy Now
+        </button>
+        <button onclick="handleWish(prodId, this)" class="border border-[#280b08]/30 px-4 py-3 rounded-full hover:bg-red-50">
+          <i class="fa-regular fa-heart text-red-400"></i>
+        </button>
+      </div>
+
+      <!-- Meta -->
+      <div class="mt-6 pt-6 border-t border-[#280b08]/10 space-y-2 text-sm">
+        <div class="flex gap-2"><span class="text-gray-400 w-24">Category:</span><span id="prodCat" class="font-medium capitalize"></span></div>
+        <div class="flex gap-2"><span class="text-gray-400 w-24">Delivery:</span><span class="font-medium">2–5 business days</span></div>
+        <div class="flex gap-2"><span class="text-gray-400 w-24">Returns:</span><span class="font-medium">7-day easy return</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS SECTION (unchanged) -->
+  <div class="bg-white rounded-2xl shadow p-6 mb-8">
+    <h3 class="text-lg font-bold mb-4">Customer Reviews</h3>
+    <div class="space-y-4">
+      <div class="border-b border-[#280b08]/10 pb-4">
+        <div class="flex items-center gap-2 mb-1">
+          <div class="w-8 h-8 bg-[#f2d04e] rounded-full flex items-center justify-center text-xs font-bold text-[#280b08]">AO</div>
+          <span class="font-semibold text-sm">Amaka Okonkwo</span>
+          <span class="text-yellow-400 text-xs ml-1">★★★★★</span>
+        </div>
+        <p class="text-sm text-gray-500">Excellent product! Exactly as described. Fast delivery from Kata Kara. Will definitely buy again.</p>
+      </div>
+      <div class="border-b border-[#280b08]/10 pb-4">
+        <div class="flex items-center gap-2 mb-1">
+          <div class="w-8 h-8 bg-[#280b08] rounded-full flex items-center justify-center text-xs font-bold text-[#f9e7c9]">TB</div>
+          <span class="font-semibold text-sm">Tunde Balogun</span>
+          <span class="text-yellow-400 text-xs ml-1">★★★★☆</span>
+        </div>
+        <p class="text-sm text-gray-500">Good quality. Packaging was neat. Seller was responsive. Minus one star for slight delay.</p>
+      </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-[#280b08]/10">
+      <h4 class="font-semibold text-sm mb-3">Write a Review</h4>
+      <textarea placeholder="Share your experience with this product..." class="w-full border border-[#280b08]/20 rounded-lg p-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#280b08] bg-[#f9e7c9]" rows="3"></textarea>
+      <button onclick="showToast('Review submitted! Thank you.')" class="mt-2 primary-btn px-5 py-2 rounded-full text-sm font-medium">Submit Review</button>
+    </div>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <div>
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-bold">You Might Also Like</h3>
+      <a href="shop.html" class="text-sm text-blue-600 hover:underline">View All</a>
+    </div>
+    <div id="relatedGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-4"></div>
+  </div>
+</div>
+
+<script src="../js/footer.js"></script>
+<script src="../js/shared.js"></script>
+
+<script>
+  // Helper: star rating HTML
+  function starsHTML(rating) {
+    let full = Math.floor(rating);
+    let half = rating % 1 >= 0.5;
+    let stars = '';
+    for (let i = 0; i < full; i++) stars += '<i class="fa fa-star text-yellow-400 text-sm"></i>';
+    if (half) stars += '<i class="fa fa-star-half-alt text-yellow-400 text-sm"></i>';
+    while (stars.length / 33 < 5 && !half && stars.length/33 < full) stars += '<i class="fa fa-star-o text-gray-300 text-sm"></i>';
+    while (stars.split('fa-star').length-1 + (half?1:0) < 5) stars += '<i class="fa fa-star-o text-gray-300 text-sm"></i>';
+    return stars;
+  }
+
+  // Product card HTML for related items (uses image)
+  function productCardHTML(p) {
+    return `
+      <a href="product.html?id=${p.id}" class="bg-white rounded-xl shadow p-3 hover:shadow-lg transition">
+        <div class="h-32 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+          <img src="${p.image}" class="w-full h-full object-cover" alt="${p.name}" onerror="this.src='https://placehold.co/300x300?text=No+Image'">
+        </div>
+        <p class="font-bold text-sm mt-2 truncate">${p.name}</p>
+        <p class="text-blue-700 font-bold text-sm">₦${p.price.toLocaleString()}</p>
+      </a>
+    `;
+  }
+
+  // Get product ID from URL
+  const params = new URLSearchParams(window.location.search);
+  const prodId = parseInt(params.get('id')) || 1;
+  let qty = 1;
+
+  // Wait for PRODUCTS from shared.js, fallback if missing
+  function initProductPage() {
+    if (typeof PRODUCTS === 'undefined') {
+      console.warn("PRODUCTS not defined – using demo data");
+      window.PRODUCTS = [
+        { id:1, name:"Premium Sneakers", seller:"Footwear NG", price:25000, old:35000, rating:4.5, reviews:120, cat:"fashion", badge:"hot", image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop", desc:"Comfortable and stylish sneakers." },
+        { id:2, name:"Smart Watch", seller:"GadgetHub", price:18000, old:25000, rating:4.2, reviews:85, cat:"electronics", badge:"", image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop", desc:"Track your fitness and stay connected." }
+      ];
+    }
+
+    const p = PRODUCTS.find(x => x.id === prodId) || PRODUCTS[0];
+    if (!p) return;
+
+    document.getElementById('breadProduct').textContent = p.name;
+    document.getElementById('prodName').textContent = p.name;
+    document.getElementById('prodSeller').innerHTML = '<i class="fa fa-store mr-1"></i>Sold by ' + p.seller;
+    document.getElementById('prodPrice').textContent = '₦' + p.price.toLocaleString();
+    document.getElementById('prodCat').textContent = p.cat;
+    document.getElementById('prodDesc').textContent = p.desc || "Premium quality product from a verified Kata Kara seller.";
+    
+    // Set product image
+    const imgElement = document.getElementById('prodImage');
+    if (p.image) {
+      imgElement.src = p.image;
+      imgElement.onerror = () => { imgElement.src = 'https://placehold.co/600x400?text=Image+Not+Found'; };
+    } else {
+      imgElement.src = 'https://placehold.co/600x400?text=No+Image';
+    }
+
+    // Old price & discount
+    if (p.old) {
+      document.getElementById('prodOld').textContent = '₦' + p.old.toLocaleString();
+      const pct = Math.round((1 - p.price / p.old) * 100);
+      document.getElementById('prodDiscount').textContent = '-' + pct + '%';
+    } else {
+      document.getElementById('prodOld').style.display = 'none';
+      document.getElementById('prodDiscount').style.display = 'none';
+    }
+
+    // Badge
+    if (p.badge) {
+      const badgeEl = document.getElementById('prodBadge');
+      badgeEl.textContent = p.badge.toUpperCase();
+      let bgClass = 'bg-red-500';
+      if (p.badge === 'new') bgClass = 'bg-green-500';
+      else if (p.badge === 'trending') bgClass = 'bg-orange-400';
+      badgeEl.className = `inline-block ${bgClass} text-white text-xs px-3 py-1 rounded-full font-semibold uppercase mb-3`;
+    } else {
+      document.getElementById('prodBadge').style.display = 'none';
+    }
+
+    // Stars & reviews
+    document.getElementById('prodStars').innerHTML = starsHTML(p.rating) + `<span class="text-gray-400 text-sm ml-2">${p.rating} (${p.reviews} reviews)</span>`;
+
+    // Related products
+    let related = PRODUCTS.filter(x => x.id !== p.id && x.cat === p.cat).slice(0, 4);
+    if (related.length < 4) {
+      const others = PRODUCTS.filter(x => x.id !== p.id && x.cat !== p.cat).slice(0, 4 - related.length);
+      related = [...related, ...others];
+    }
+    document.getElementById('relatedGrid').innerHTML = related.slice(0,4).map(productCardHTML).join('');
+  }
+
+  function changeQty(d) { qty = Math.max(1, qty + d); document.getElementById('qtyDisplay').textContent = qty; }
+  function handleAddCart() { 
+    if (typeof addToCart === 'function') {
+      for (let i = 0; i < qty; i++) addToCart(prodId);
+    }
+    showToast('Added to cart!'); 
+  }
+  function handleBuyNow() { handleAddCart(); if (typeof window !== 'undefined') window.location.href = 'cart.html'; }
+  function showToast(msg) { 
+    let toast = document.getElementById('toast');
+    if(!toast){
+      toast = document.createElement('div');
+      toast.id = 'toast';
+      toast.className = 'fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-[#280b08] text-white px-5 py-2 rounded-full shadow-lg text-sm z-50';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+  }
+  function handleWish(pid, btn) { showToast('Added to wishlist ❤️'); }
+
+  initProductPage();
+</script>
+</body>
+</html>

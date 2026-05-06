@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sell on Kata Kara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>.primary-btn{background:#f2d04e;color:#280b08}.primary-btn:hover{background:#e6c23d}.dark-btn{background:#280b08;color:#f9e7c9}.dark-btn:hover{background:#3d1209}#toast{transition:opacity .3s,transform .3s;transform:translateY(20px)}</style>
+</head>
+<body class="bg-[#f9e7c9] text-[#280b08]">
+<div class="bg-[#280b08] text-[#f9e7c9] text-xs py-1.5 px-4 flex justify-between items-center">
+  <span><i class="fa fa-store mr-1"></i>Seller Centre</span>
+  <a href="../index.html" class="hover:text-[#f2d04e]"><i class="fa fa-arrow-left mr-1"></i>Back to Marketplace</a>
+</div>
+<header class="bg-[#f9e7c9] shadow-sm border-b border-[#280b08]/10">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2"><i class="fa-solid fa-bag-shopping text-[#280b08] text-2xl"></i><span class="text-xl font-bold">KATA KARA</span></a>
+    <a href="login.html" class="text-sm text-[#280b08] hover:underline">Already a seller? Login</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="bg-[#280b08] text-[#f9e7c9] py-16 px-4">
+  <div class="max-w-3xl mx-auto text-center">
+    <p class="text-[#f2d04e] text-sm font-semibold uppercase tracking-widest mb-3">Seller Centre</p>
+    <h1 class="text-4xl font-bold leading-tight">Start Selling on<br/><span class="text-[#f2d04e]">Kata Kara</span> Today</h1>
+    <p class="text-[#f9e7c9]/70 mt-4 text-lg max-w-xl mx-auto">Join 50,000+ sellers reaching millions of buyers across Nigeria. Zero setup fee. Daily payouts. Full support.</p>
+    <div class="flex justify-center gap-6 mt-8 flex-wrap text-center">
+      <div class="bg-white/10 rounded-xl px-6 py-4"><p class="text-2xl font-bold text-[#f2d04e]">50K+</p><p class="text-xs mt-1 opacity-70">Active Sellers</p></div>
+      <div class="bg-white/10 rounded-xl px-6 py-4"><p class="text-2xl font-bold text-[#f2d04e]">₦4.2B</p><p class="text-xs mt-1 opacity-70">Transactions</p></div>
+      <div class="bg-white/10 rounded-xl px-6 py-4"><p class="text-2xl font-bold text-[#f2d04e]">36</p><p class="text-xs mt-1 opacity-70">States Reached</p></div>
+      <div class="bg-white/10 rounded-xl px-6 py-4"><p class="text-2xl font-bold text-[#f2d04e]">₦0</p><p class="text-xs mt-1 opacity-70">Setup Fee</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="max-w-5xl mx-auto px-4 py-14">
+  <h2 class="text-2xl font-bold text-center mb-10">How It Works</h2>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+    <div class="bg-white rounded-xl shadow p-6"><div class="w-12 h-12 bg-[#f2d04e] rounded-full flex items-center justify-center font-bold text-xl text-[#280b08] mx-auto mb-4">1</div><h3 class="font-bold mb-2">Create Account</h3><p class="text-sm text-gray-500">Sign up free in 2 minutes. No ID required to start.</p></div>
+    <div class="bg-white rounded-xl shadow p-6"><div class="w-12 h-12 bg-[#f2d04e] rounded-full flex items-center justify-center font-bold text-xl text-[#280b08] mx-auto mb-4">2</div><h3 class="font-bold mb-2">List Products</h3><p class="text-sm text-gray-500">Add your products with photos, prices and description.</p></div>
+    <div class="bg-white rounded-xl shadow p-6"><div class="w-12 h-12 bg-[#f2d04e] rounded-full flex items-center justify-center font-bold text-xl text-[#280b08] mx-auto mb-4">3</div><h3 class="font-bold mb-2">Get Orders</h3><p class="text-sm text-gray-500">Buyers find your products and place orders securely.</p></div>
+    <div class="bg-white rounded-xl shadow p-6"><div class="w-12 h-12 bg-[#f2d04e] rounded-full flex items-center justify-center font-bold text-xl text-[#280b08] mx-auto mb-4">4</div><h3 class="font-bold mb-2">Get Paid</h3><p class="text-sm text-gray-500">Daily payouts directly to your Nigerian bank account.</p></div>
+  </div>
+</section>
+
+<!-- SIGNUP FORM -->
+<section class="max-w-lg mx-auto px-4 pb-16">
+  <div class="bg-white rounded-2xl shadow-lg p-8">
+    <h2 class="text-xl font-bold mb-1 text-center">Create Your Seller Account</h2>
+    <p class="text-sm text-gray-400 text-center mb-6">Free to join. No hidden fees.</p>
+    <div class="space-y-4">
+      <div class="grid grid-cols-2 gap-3">
+        <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">First Name</label><input type="text" placeholder="Chidi" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+        <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Last Name</label><input type="text" placeholder="Okonkwo" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+      </div>
+      <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Store Name</label><input type="text" placeholder="e.g. Chidi's Electronics" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+      <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Email Address</label><input type="email" placeholder="you@example.com" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+      <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Phone Number</label><input type="tel" placeholder="+234 803 000 0000" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+      <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">What do you sell?</label>
+        <select class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]">
+          <option>Electronics & Gadgets</option><option>Fashion & Clothing</option><option>Home & Kitchen</option><option>Health & Beauty</option><option>Food & Groceries</option><option>Furniture</option><option>Sports & Fitness</option><option>Other</option>
+        </select>
+      </div>
+      <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Password</label><input type="password" placeholder="Min. 8 characters" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+      <label class="flex items-start gap-2 text-xs cursor-pointer"><input type="checkbox" class="accent-[#280b08] mt-0.5"/><span class="text-gray-500">I agree to Kata Kara's <a href="#" class="text-blue-600 underline">Seller Terms</a> and <a href="#" class="text-blue-600 underline">Privacy Policy</a></span></label>
+      <button onclick="handleSellerSignup()" class="dark-btn w-full py-3 rounded-full font-bold text-sm">Create Seller Account <i class="fa fa-arrow-right ml-2"></i></button>
+    </div>
+  </div>
+</section>
+
+<div id="toast" class="fixed bottom-6 right-6 bg-[#280b08] text-[#f9e7c9] px-5 py-3 rounded-xl shadow-xl text-sm z-50 opacity-0 pointer-events-none flex items-center gap-2" style="transition:opacity .3s,transform .3s;transform:translateY(20px)">
+  <i class="fa fa-check-circle text-[#f2d04e]"></i><span id="toastMsg">Done!</span>
+</div>
+
+<script>
+function handleSellerSignup() {
+  showToast('Account created! Welcome to Kata Kara Sellers.');
+  setTimeout(() => window.location.href = 'seller-dashboard.html', 1000);
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.style.opacity='1'; t.style.transform='translateY(0)';
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateY(20px)'},2600);
+}
+</script>
+</body>
+</html>

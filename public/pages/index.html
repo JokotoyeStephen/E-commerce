@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kata Kara E-commerce website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .primary-btn {
+      background: #f2d04e;
+      color: #280b08
+    }
+
+    .primary-btn:hover {
+      background: #e6c23d
+    }
+
+    .dark-btn {
+      background: #280b08;
+      color: #f9e7c9
+    }
+
+    .dark-btn:hover {
+      background: #3d1209
+    }
+
+    .card-hover {
+      transition: transform .2s, box-shadow .2s
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(40, 11, 8, .12)
+    }
+
+    .hero-slide {
+      display: none
+    }
+
+    .hero-slide.active {
+      display: flex
+    }
+
+    #toast {
+      transition: opacity .3s, transform .3s;
+      transform: translateY(20px)
+    }
+  </style>
+</head>
+
+<body class="bg-[#f9e7c9] text-[#280b08]">
+
+  <!-- TOPBAR -->
+  <div class="bg-[#280b08] text-[#f9e7c9] text-xs py-4 px-8 flex justify-between items-center">
+    <span><i class="fa fa-truck mr-1"></i>Free delivery on orders over ₦50,000</span>
+    <div class="flex gap-4 flex-wrap">
+      <a href="./seller-signup.html" class="hover:text-[#f2d04e]"><i class="fa fa-store mr-1"></i>Sell on Kata
+        Kara</a>
+      <a href="./track-order.html" class="hover:text-[#f2d04e]"><i class="fa fa-map-marker-alt mr-1"></i>Track
+        Order</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="bg-[#f9e7c9] shadow-sm sticky top-0 z-50 border-b border-[#280b08]/10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <a href="./index.html" class="flex items-center gap-2 flex-shrink-0">
+        <span class="text-xl font-bold text-[#280b08] tracking-wide animate-bounce">KATA KARA</span>
+      </a>
+      <div class="hidden md:flex flex-1 mx-6">
+        <div class="flex w-full">
+          <select
+            class="border border-[#280b08]/30 border-r-0 rounded-l-full px-3 py-4 px-4 text-sm bg-amber-50 focus:outline-none">
+            <option>All</option>
+            <option>Electronics</option>
+            <option>Fashion</option>
+            <option>Home</option>
+            <option>Beauty</option>
+          </select>
+          <input id="searchInput" type="text" placeholder="Search products, brands, sellers..."
+            class="flex-1 border border-[#280b08]/30 px-5 py-2 focus:outline-none focus:ring-1 focus:ring-[#280b08] bg-amber-50 text-sm"
+            onkeydown="if(event.key==='Enter')doSearch()" />
+          <button class="primary-btn px-5 rounded-r-full text-sm font-medium" onclick="doSearch()"><i
+              class="fa fa-search"></i></button>
+        </div>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="./wishlist.html" class="relative hidden sm:block">
+          <i class="fa-regular fa-heart text-xl hover:text-red-500"></i>
+          <span id="wishCount"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
+        </a>
+        <a href="./cart.html" class="relative">
+          <i class="fa fa-shopping-cart text-xl hover:text-[#f2d04e]"></i>
+          <span id="cartCount"
+            class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
+        </a>
+        <a href="./login.html" class="hidden sm:block"><i
+            class="fa-regular fa-user text-xl hover:text-[#280b08]"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN NAV -->
+  <nav class="bg-[#280b08] text-[#f9e7c9]">
+    <div class="max-w-7xl mx-auto px-4 flex gap-1 text-sm font-medium overflow-x-auto">
+      <a href="./index.html" class="py-3 px-3 whitespace-nowrap text-[#f2d04e] border-b-2 border-[#f2d04e]">Home</a>
+      <a href="./shop.html" class="py-3 px-3 hover:text-[#f2d04e] whitespace-nowrap">Shop</a>
+      <a href="#categories" class="py-3 px-3 hover:text-[#f2d04e] whitespace-nowrap">Categories</a>
+      <a href="./about.html" class="py-3 px-3 hover:text-[#f2d04e] whitespace-nowrap">About</a>
+      <a href="./blog.html" class="py-3 px-3 hover:text-[#f2d04e] whitespace-nowrap">Blog</a>
+      <a href="./contact.html" class="py-3 px-3 hover:text-[#f2d04e] whitespace-nowrap">Contact</a>
+      <a href="./seller-signup.html" class="py-3 px-3 text-[#f2d04e] whitespace-nowrap ml-auto font-bold"><i
+          class="fa fa-store mr-1"></i>Start Selling</a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-12 gap-6">
+
+    <!-- SIDEBAR -->
+    <aside class="col-span-12 md:col-span-3 space-y-4">
+      <div class="bg-white rounded-lg shadow overflow-hidden">
+        <h3 class="font-semibold text-[#f9e7c9] bg-[#280b08] px-4 py-3 flex items-center gap-2 text-sm">
+          <i class="fa fa-bars"></i> All Categories
+        </h3>
+        <ul class="text-sm divide-y divide-[#280b08]/10">
+          <li><a href="./shop.html?cat=fashion"
+              class="flex justify-between items-center px-4 py-3 hover:bg-amber-50 cursor-pointer"><span><i
+                  class="fa fa-shirt mr-2 text-[#280b08]"></i>Fashion</span><i
+                class="fa fa-chevron-right text-xs opacity-40"></i></a></li>
+          <li><a href="./shop.html?cat=electronics"
+              class="flex justify-between items-center px-4 py-3 hover:bg-amber-50 cursor-pointer"><span><i
+                  class="fa fa-tv mr-2 text-[#280b08]"></i>Electronics</span><i
+                class="fa fa-chevron-right text-xs opacity-40"></i></a></li>
+          <li><a href="./shop.html?cat=home"
+              class="flex justify-between items-center px-4 py-3 hover:bg-amber-50 cursor-pointer"><span><i
+                  class="fa fa-couch mr-2 text-[#280b08]"></i>Home & Decor</span><i
+                class="fa fa-chevron-right text-xs opacity-40"></i></a></li>
+          <li><a href="./shop.html?cat=beauty"
+              class="flex justify-between items-center px-4 py-3 hover:bg-amber-50 cursor-pointer"><span><i
+                  class="fa fa-spa mr-2 text-[#280b08]"></i>Beauty</span><i
+                class="fa fa-chevron-right text-xs opacity-40"></i></a></li>
+          <li><a href="./shop.html?cat=medicine"
+              class="flex justify-between items-center px-4 py-3 hover:bg-amber-50 cursor-pointer"><span><i
+                  class="fa fa-pills mr-2 text-[#280b08]"></i>Medicine</span><i
+                class="fa fa-chevron-right text-xs opacity-40"></i></a></li>
+          <li><a href="./shop.html?cat=furniture"
+              class="flex justify-between items-center px-4 py-3 hover:bg-amber-50 cursor-pointer"><span><i
+                  class="fa fa-chair mr-2 text-[#280b08]"></i>Furniture</span><i
+                class="fa fa-chevron-right text-xs opacity-40"></i></a></li>
+          <li><a href="./shop.html?cat=camera"
+              class="flex justify-between items-center px-4 py-3 hover:bg-amber-50 cursor-pointer"><span><i
+                  class="fa fa-camera mr-2 text-[#280b08]"></i>Camera</span><i
+                class="fa fa-chevron-right text-xs opacity-40"></i></a></li>
+          <li><a href="./shop.html?cat=sports"
+              class="flex justify-between items-center px-4 py-3 hover:bg-amber-50 cursor-pointer"><span><i
+                  class="fa fa-dumbbell mr-2 text-[#280b08]"></i>Sports</span><i
+                class="fa fa-chevron-right text-xs opacity-40"></i></a></li>
+        </ul>
+      </div>
+      <!-- <div class="bg-[#280b08] text-[#f9e7c9] rounded-lg p-5">
+      <p class="text-xs text-[#f2d04e] font-semibold uppercase tracking-widest">Special Offer</p>
+      <h4 class="text-lg font-bold mt-1">Up to 50% OFF</h4>
+      <p class="text-xs mt-1 opacity-70">Electronics & Gadgets this week</p>
+      <a href="pages/shop.html" class="inline-block mt-3 primary-btn px-4 py-2 rounded text-sm font-medium">Shop Now</a>
+    </div>
+    <div class="bg-amber-50 border border-[#280b08]/20 rounded-lg p-5 text-center">
+      <i class="fa fa-store text-3xl text-[#280b08] mb-2 block"></i>
+      <h4 class="font-bold text-sm">Sell on Kata Kara</h4>
+      <p class="text-xs text-gray-500 mt-1">Join 50,000+ sellers</p>
+      <a href="pages/seller-signup.html" class="inline-block mt-3 dark-btn px-4 py-2 rounded text-sm font-medium">Open Store</a>
+    </div> -->
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="col-span-12 md:col-span-9 space-y-6">
+
+      <!-- HERO SLIDER -->
+      <div class="relative bg-white rounded-xl shadow overflow-hidden" style="min-height:240px">
+        <div class="hero-slide active items-center justify-between p-8 bg-gradient-to-r from-amber-100 to-white"
+          id="slide0">
+          <div>
+            <span class="text-pink-500 font-semibold text-sm uppercase tracking-wide">New Arrival</span>
+            <h1 class="text-3xl md:text-4xl font-bold mt-2 text-[#280b08]">Latest Gadgets<br>& Electronics</h1>
+            <p class="text-gray-500 text-sm mt-2 max-w-xs">Shop the latest phones, laptops and smart devices.</p>
+            <a href="./shop.html?cat=electronics"
+              class="inline-block mt-4 primary-btn px-6 py-2 rounded-full font-medium text-sm">Shop Now <i
+                class="fa fa-arrow-right ml-1"></i></a>
+          </div>
+          <div class="hidden md:flex text-8xl text-[#280b08]">
+            <img
+              src="../images/ei_1777631682740-removebg-preview.png"
+              alt="" style="height:250px;">
+          </div>
+        </div>
+        <div class="hero-slide items-center justify-between p-8 bg-gradient-to-r from-pink-100 to-white" id="slide1">
+          <div>
+            <span class="text-[#280b08] font-semibold text-sm uppercase tracking-wide">Fashion Week</span>
+            <h1 class="text-3xl md:text-4xl font-bold mt-2 text-[#280b08]">Trending Styles<br>for Everyone</h1>
+            <p class="text-gray-500 text-sm mt-2 max-w-xs">Discover the season's most stylish outfits.</p>
+            <a href="./shop.html?cat=fashion"
+              class="inline-block mt-4 primary-btn px-6 py-2 rounded-full font-medium text-sm">Explore <i
+                class="fa fa-arrow-right ml-1"></i></a>
+          </div>
+          <div class="hidden md:flex text-8xl text-[#280b08]">
+            <img
+              src="../images/ei_1777631658026-removebg-preview.png"
+              alt="" style="height:250px;">
+
+          </div>
+        </div>
+        <div class="hero-slide items-center justify-between p-8 bg-gradient-to-r from-amber-100 to-white" id="slide2">
+          <div>
+            <span class="text-green-600 font-semibold text-sm uppercase tracking-wide">Flash Sale</span>
+            <h1 class="text-3xl md:text-4xl font-bold mt-2 text-[#280b08]">Home & Living<br>Up to 40% Off</h1>
+            <p class="text-gray-500 text-sm mt-2 max-w-xs">Transform your space with premium home decor.</p>
+            <a href="./shop.html?cat=home"
+              class="inline-block mt-4 primary-btn px-6 py-2 rounded-full font-medium text-sm">Grab Deal <i
+                class="fa fa-tag ml-1"></i></a>
+          </div>
+          <div class="hidden md:flex text-8xl text-[#280b08]">
+            <img
+              src="../images/ei_1777632577294-removebg-preview.png"
+              alt="" style="height:250px;">
+          </div>
+
+        </div>
+
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+          <button onclick="goSlide(0)" id="dot0" class="w-2 h-2 rounded-full bg-[#280b08]"></button>
+          <button onclick="goSlide(1)" id="dot1" class="w-2 h-2 rounded-full bg-[#280b08] opacity-40"></button>
+          <button onclick="goSlide(2)" id="dot2" class="w-2 h-2 rounded-full bg-[#280b08] opacity-40"></button>
+        </div>
+        <button onclick="prevSlide()"
+          class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 rounded-full w-8 h-8 flex items-center justify-center shadow text-sm"><i
+            class="fa fa-chevron-left"></i></button>
+        <button onclick="nextSlide()"
+          class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 rounded-full w-8 h-8 flex items-center justify-center shadow text-sm"><i
+            class="fa fa-chevron-right"></i></button>
+      </div>
+
+      <!-- PROMO STRIPS -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="bg-[#280b08] text-[#f9e7c9] rounded-lg p-4 flex items-center gap-3">
+          <i class="fa fa-truck text-2xl text-[#f2d04e]"></i>
+          <div>
+            <p class="font-semibold text-sm">Free Delivery</p>
+            <p class="text-xs opacity-70">Orders over ₦50,000</p>
+          </div>
+        </div>
+        <div class="bg-[#280b08] text-[#f9e7c9] rounded-lg p-4 flex items-center gap-3">
+          <i class="fa fa-shield-alt text-2xl text-[#f2d04e]"></i>
+          <div>
+            <p class="font-semibold text-sm">Buyer Protection</p>
+            <p class="text-xs opacity-70">Money-back guarantee</p>
+          </div>
+        </div>
+        <div class="bg-[#280b08] text-[#f9e7c9] rounded-lg p-4 flex items-center gap-3">
+          <i class="fa fa-headset text-2xl text-[#f2d04e]"></i>
+          <div>
+            <p class="font-semibold text-sm">24/7 Support</p>
+            <p class="text-xs opacity-70">Dedicated help team</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  
+
+  <section class="max-w-7xl mx-auto px-4 py-10">
+    <!-- FEATURED -->
+    <div>
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Featured Products</h2>
+  
+            <a href="./shop.html"
+              class="inline-block mt-4 primary-btn px-4 py-2 font-medium text-sm">View All<i
+                class="fa fa-arrow-right ml-1"></i></a>
+      </div>
+      <div id="featuredGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    </div>
+
+    <!-- FLASH SALE -->
+    <div class="bg-[#280b08] rounded-xl p-5 mb-4 mt-8">
+      <div class="flex justify-between items-center">
+        <h2 class="text-xl font-bold text-[#f9e7c9]"><i class="fa fa-bolt text-[#f2d04e] mr-2"></i>Flash Sale</h2>
+        <div class="flex items-center gap-1 text-[#f9e7c9] text-sm">
+          Ends in:
+          <span class="bg-[#f2d04e] text-[#280b08] font-bold px-2 py-1 rounded text-xs" id="fh">03</span>:
+          <span class="bg-[#f2d04e] text-[#280b08] font-bold px-2 py-1 rounded text-xs" id="fm">22</span>:
+          <span class="bg-[#f2d04e] text-[#280b08] font-bold px-2 py-1 rounded text-xs" id="fs">45</span>
+        </div>
+      </div>
+      <div id="flashGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+    </div>
+  </section>
+
+
+  <!-- TRUST -->
+  <section class="bg-[#280b08] py-8">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-[#f9e7c9]">
+      <div><i class="fa fa-truck text-3xl text-[#f2d04e] mb-2 block"></i>
+        <p class="font-semibold text-sm">Fast Delivery</p>
+        <p class="text-xs opacity-60">2–5 business days</p>
+      </div>
+      <div><i class="fa fa-undo text-3xl text-[#f2d04e] mb-2 block"></i>
+        <p class="font-semibold text-sm">Easy Returns</p>
+        <p class="text-xs opacity-60">7-day return policy</p>
+      </div>
+      <div><i class="fa fa-lock text-3xl text-[#f2d04e] mb-2 block"></i>
+        <p class="font-semibold text-sm">Secure Payment</p>
+        <p class="text-xs opacity-60">Flutterwave & Paystack</p>
+      </div>
+      <div><i class="fa fa-star text-3xl text-[#f2d04e] mb-2 block"></i>
+        <p class="font-semibold text-sm">Verified Sellers</p>
+        <p class="text-xs opacity-60">All sellers vetted</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section class="max-w-7xl mx-auto px-4 py-10" id="categories">
+    <div class="flex justify-between items-center mb-6" >
+      <h2 class="text-2xl font-bold">My Market Category</h2>
+      <a href="./shop.html"
+              class="inline-block mt-4 primary-btn px-4 py-2 font-medium text-sm">Browse All <i
+                class="fa fa-arrow-right ml-1"></i></a>
+    </div>
+    <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-10 gap-4">
+      <a href="./shop.html?cat=electronics" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-laptop text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Electronics</p>
+      </a>
+      <a href="./shop.html?cat=home" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-house text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Home Decor</p>
+      </a>
+      <a href="./shop.html?cat=medicine" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-capsules text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Medicine</p>
+      </a>
+      <a href="./shop.html?cat=furniture" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-couch text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Furniture</p>
+      </a>
+      <a href="./shop.html?cat=camera" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-camera text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Camera</p>
+      </a>
+      <a href="./shop.html?cat=electronics" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-headphones text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Audio</p>
+      </a>
+      <a href="./shop.html?cat=beauty" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-spa text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Beauty</p>
+      </a>
+      <a href="./shop.html?cat=home" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-utensils text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Kitchen</p>
+      </a>
+      <a href="./shop.html?cat=fashion" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-shirt text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Fashion</p>
+      </a>
+      <a href="./shop.html" class="flex flex-col items-center group">
+        <div
+          class="w-14 h-14 flex items-center justify-center rounded-full bg-white shadow group-hover:bg-[#f2d04e] transition">
+          <i class="fa-solid fa-paw text-xl text-[#280b08]"></i>
+        </div>
+        <p class="mt-2 text-xs text-[#280b08] text-center font-medium">Pets</p>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- NEWSLETTER -->
+  <section class="max-w-7xl mx-auto px-4 py-10">
+    <div
+      class="bg-amber-50 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-[#280b08]/10">
+      <div>
+        <h3 class="text-2xl font-bold text-[#280b08]">Stay in the loop</h3>
+        <p class="text-sm text-gray-500 mt-1">Subscribe for deals, new arrivals and exclusive offers.</p>
+      </div>
+      <div class="flex w-full md:w-auto">
+        <input type="email" placeholder="Enter your email address"
+          class="flex-1 md:w-72 border border-[#280b08]/30 rounded-l-full px-5 py-3 text-sm focus:outline-none bg-white" />
+        <button class="dark-btn px-6 py-3 rounded-r-full text-sm font-medium whitespace-nowrap"
+          onclick="showToast('Subscribed! Welcome to Kata Kara.')">Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#280b08] text-[#f9e7c9]">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-bag-shopping text-[#f2d04e] text-xl"></i><span
+            class="text-lg font-bold text-[#f2d04e]">KATA KARA</span></div>
+        <p class="text-xs opacity-60 leading-relaxed">Nigeria's premium marketplace — buying and selling made easy.</p>
+        <div class="flex gap-3 mt-4">
+          <a href="#"
+            class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#f2d04e] hover:text-[#280b08] transition"><i
+              class="fab fa-facebook-f text-xs"></i></a>
+          <a href="#"
+            class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#f2d04e] hover:text-[#280b08] transition"><i
+              class="fab fa-twitter text-xs"></i></a>
+          <a href="#"
+            class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#f2d04e] hover:text-[#280b08] transition"><i
+              class="fab fa-instagram text-xs"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-[#f2d04e] text-xs uppercase tracking-widest">Buyers</h4>
+        <ul class="space-y-2 text-xs opacity-70">
+          <li><a href="./shop.html" class="hover:opacity-100 hover:text-[#f2d04e]">How to Buy</a></li>
+          <li><a href="./track-order.html" class="hover:opacity-100 hover:text-[#f2d04e]">Track Order</a></li>
+          <li><a href="#" class="hover:opacity-100 hover:text-[#f2d04e]">Returns & Refunds</a></li>
+          <li><a href="./cart.html" class="hover:opacity-100 hover:text-[#f2d04e]">My Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-[#f2d04e] text-xs uppercase tracking-widest">Sellers</h4>
+        <ul class="space-y-2 text-xs opacity-70">
+          <li><a href="./seller-signup.html" class="hover:opacity-100 hover:text-[#f2d04e]">Sell on Kata Kara</a>
+          </li>
+          <li><a href="./seller-dashboard.html" class="hover:opacity-100 hover:text-[#f2d04e]">Seller Dashboard</a>
+          </li>
+          <li><a href="#" class="hover:opacity-100 hover:text-[#f2d04e]">Seller Fees</a></li>
+          <li><a href="#" class="hover:opacity-100 hover:text-[#f2d04e]">Promotions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-[#f2d04e] text-xs uppercase tracking-widest">Company</h4>
+        <ul class="space-y-2 text-xs opacity-70">
+          <li><a href="./about.html" class="hover:opacity-100 hover:text-[#f2d04e]">About Us</a></li>
+          <li><a href="./contact.html" class="hover:opacity-100 hover:text-[#f2d04e]">Contact</a></li>
+          <li><a href="./blog.html" class="hover:opacity-100 hover:text-[#f2d04e]">Blog</a></li>
+          <li><a href="#" class="hover:opacity-100 hover:text-[#f2d04e]">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 py-4 text-center text-xs opacity-50">&copy; 2025 Kata Kara. All rights
+      reserved. Made with <i class="fa fa-heart text-red-400"></i> in Nigeria.</div>
+  </footer>
+
+  <div id="toast"
+    class="fixed bottom-6 right-6 bg-[#280b08] text-[#f9e7c9] px-5 py-3 rounded-xl shadow-xl text-sm z-50 opacity-0 pointer-events-none flex items-center gap-2">
+    <i class="fa fa-check-circle text-[#f2d04e]"></i><span id="toastMsg">Done!</span>
+  </div>
+
+  <script src="../js/shared.js"></script>
+  <script>
+    let cur = 0;
+    function goSlide(n) {
+      document.querySelectorAll('.hero-slide').forEach((s, i) => { s.classList.toggle('active', i === n); document.getElementById('dot' + i).style.opacity = i === n ? '1' : '0.4'; });
+      cur = n;
+    }
+    function nextSlide() { goSlide((cur + 1) % 3); }
+    function prevSlide() { goSlide((cur - 1 + 3) % 3); }
+    setInterval(nextSlide, 4000);
+
+    let secs = 4 * 3600 + 22 * 60 + 45;
+    setInterval(() => {
+      secs--; if (secs < 0) secs = 0;
+      const h = Math.floor(secs / 3600), m = Math.floor((secs % 3600) / 60), s = secs % 60;
+      document.getElementById('fh').textContent = String(h).padStart(2, '0');
+      document.getElementById('fm').textContent = String(m).padStart(2, '0');
+      document.getElementById('fs').textContent = String(s).padStart(2, '0');
+    }, 1000); 
+
+    function doSearch() { const q = document.getElementById('searchInput').value.trim(); if (q) window.location.href = './shop.html?search=' + encodeURIComponent(q); }
+
+    document.getElementById('featuredGrid').innerHTML = PRODUCTS.slice(0, 8).map(p => productCardHTML(p, '')).join('');
+    document.getElementById('flashGrid').innerHTML = PRODUCTS.filter(p => p.old).slice(0, 4).map(p => {
+      const pct = Math.round((1 - p.price / p.old) * 100);
+      return `<div class="card-hover bg-[#f9e7c9] mt-4 rounded-xl overflow-hidden hover:p-4 py-6 cursor-pointer"  onclick="window.location.href='./product.html?id=${p.id}'">
+      <div class="relative mb-2 flex items-center justify-center bg-[]" style="height:200px">
+        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-contain animate-pulse transition duration-300">
+        <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">-${pct}%</span>
+      </div>
+      <div class="p-3">
+        <h4 class="text-[#280b08] text-xs font-semibold truncate">${p.name}</h4>
+        <div class="flex items-center justify-between mt-2">
+          <div><span class="text-[#280b08] font-bold text-sm">₦${p.price.toLocaleString()}</span><span class="text-[#280b08]/40 text-xs line-through ml-1">₦${p.old.toLocaleString()}</span></div>
+          <button onclick="event.stopPropagation();addToCart(${p.id})" class="primary-btn px-2 py-1 rounded text-xs"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+    </div>`;
+    }).join('');
+  </script>
+  <script src="../css styling/index.css"></script>
+</body>
+
+</html>

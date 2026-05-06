@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop — Kata Kara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>.primary-btn{background:#f2d04e;color:#280b08}.primary-btn:hover{background:#e6c23d}.dark-btn{background:#280b08;color:#f9e7c9}.dark-btn:hover{background:#3d1209}.card-hover{transition:transform .2s,box-shadow .2s}.card-hover:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(40,11,8,.12)}#toast{transition:opacity .3s,transform .3s}</style>
+</head>
+<body class="bg-[#f9e7c9] text-[#280b08]">
+<script src="../js/header.js"></script>
+
+<div class="max-w-7xl mx-auto px-4 py-6">
+  <!-- Breadcrumb -->
+  <div class="text-sm text-gray-500 mb-4"><a href="../index.html" class="hover:text-[#280b08]">Home</a> <i class="fa fa-chevron-right text-xs mx-1"></i> <span class="font-medium text-[#280b08]">Shop</span></div>
+
+  <div class="grid grid-cols-12 gap-6">
+
+    <!-- FILTER SIDEBAR -->
+    <aside class="col-span-12 md:col-span-3 space-y-4">
+      <div class="bg-white rounded-lg shadow p-4">
+        <h3 class="font-bold text-sm mb-3 flex items-center justify-between">Filter Products <button onclick="clearFilters()" class="text-xs text-blue-600 font-normal">Clear all</button></h3>
+        <!-- Category -->
+        <div class="mb-4">
+          <p class="text-xs font-semibold uppercase text-gray-400 mb-2 tracking-widest">Category</p>
+          <div class="space-y-1 text-sm" id="catFilters">
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="electronics" class="cat-cb accent-[#280b08]"> Electronics</label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="fashion" class="cat-cb accent-[#280b08]"> Fashion</label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="home" class="cat-cb accent-[#280b08]"> Home & Decor</label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="beauty" class="cat-cb accent-[#280b08]"> Beauty</label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="furniture" class="cat-cb accent-[#280b08]"> Furniture</label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="camera" class="cat-cb accent-[#280b08]"> Camera</label>
+          </div>
+        </div>
+        <!-- Price -->
+        <div class="mb-4">
+          <p class="text-xs font-semibold uppercase text-gray-400 mb-2 tracking-widest">Price Range</p>
+          <input type="range" min="0" max="1500000" step="10000" value="1500000" id="priceRange" class="w-full accent-[#280b08]" oninput="document.getElementById('priceVal').textContent='₦'+parseInt(this.value).toLocaleString();applyFilters()"/>
+          <p class="text-xs text-gray-500 mt-1">Up to <span id="priceVal">₦1,500,000</span></p>
+        </div>
+        <!-- Rating -->
+        <div>
+          <p class="text-xs font-semibold uppercase text-gray-400 mb-2 tracking-widest">Minimum Rating</p>
+          <div class="flex gap-2">
+            <button onclick="setRating(4)" id="r4" class="text-xs border border-[#280b08]/20 px-2 py-1 rounded hover:bg-[#f2d04e]">4★+</button>
+            <button onclick="setRating(3)" id="r3" class="text-xs border border-[#280b08]/20 px-2 py-1 rounded hover:bg-[#f2d04e]">3★+</button>
+            <button onclick="setRating(0)" id="r0" class="text-xs border border-[#280b08]/20 px-2 py-1 rounded hover:bg-[#f2d04e]">All</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- PRODUCTS -->
+    <section class="col-span-12 md:col-span-9">
+      <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+        <h2 class="text-xl font-bold" id="shopTitle">All Products</h2>
+        <div class="flex items-center gap-3">
+          <span class="text-sm text-gray-500" id="resultCount">12 products</span>
+          <select id="sortSelect" onchange="applyFilters()" class="border border-[#280b08]/20 rounded px-3 py-1.5 text-sm bg-white focus:outline-none">
+            <option value="default">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Best Rated</option>
+          </select>
+          <button onclick="setView('grid')" id="vGrid" class="p-1.5 rounded bg-[#280b08] text-[#f9e7c9]"><i class="fa fa-th-large text-sm"></i></button>
+          <button onclick="setView('list')" id="vList" class="p-1.5 rounded bg-white border border-[#280b08]/20"><i class="fa fa-list text-sm"></i></button>
+        </div>
+      </div>
+      <div id="productsContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+      <div id="noResults" class="hidden text-center py-16 text-gray-400">
+        <i class="fa fa-search text-5xl mb-4 block opacity-30"></i>
+        <p class="font-semibold">No products found</p>
+        <p class="text-sm mt-1">Try adjusting your filters</p>
+        <button onclick="clearFilters()" class="mt-4 primary-btn px-5 py-2 rounded-full text-sm font-medium">Clear Filters</button>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="../js/footer.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  let minRating = 0;
+  let currentView = 'grid';
+
+  function applyFilters() {
+    const cats = [...document.querySelectorAll('.cat-cb:checked')].map(cb=>cb.value);
+    const maxPrice = parseInt(document.getElementById('priceRange').value);
+    const sort = document.getElementById('sortSelect').value;
+    const q = new URLSearchParams(window.location.search).get('search')||'';
+
+    let filtered = PRODUCTS.filter(p => {
+      if(cats.length && !cats.includes(p.cat)) return false;
+      if(p.price > maxPrice) return false;
+      if(p.rating < minRating) return false;
+      if(q && !p.name.toLowerCase().includes(q.toLowerCase()) && !p.cat.includes(q.toLowerCase())) return false;
+      return true;
+    });
+
+    if(sort==='price-low') filtered.sort((a,b)=>a.price-b.price);
+    if(sort==='price-high') filtered.sort((a,b)=>b.price-a.price);
+    if(sort==='rating') filtered.sort((a,b)=>b.rating-a.rating);
+
+    document.getElementById('resultCount').textContent = filtered.length + ' product' + (filtered.length!==1?'s':'');
+    const container = document.getElementById('productsContainer');
+    const noRes = document.getElementById('noResults');
+
+    if(!filtered.length) { container.innerHTML=''; noRes.classList.remove('hidden'); return; }
+    noRes.classList.add('hidden');
+    container.innerHTML = filtered.map(p=>productCardHTML(p)).join('');
+  }
+
+  function setRating(r) {
+    minRating = r;
+    document.querySelectorAll('[id^="r"]').forEach(btn=>btn.classList.remove('bg-[#f2d04e]','border-[#280b08]'));
+    document.getElementById('r'+r)?.classList.add('bg-[#f2d04e]');
+    applyFilters();
+  }
+
+  function clearFilters() {
+    document.querySelectorAll('.cat-cb').forEach(cb=>cb.checked=false);
+    document.getElementById('priceRange').value=1500000;
+    document.getElementById('priceVal').textContent='₦1,500,000';
+    minRating=0;
+    applyFilters();
+  }
+
+  function setView(v) {
+    currentView = v;
+    const c = document.getElementById('productsContainer');
+    if(v==='grid') { c.className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'; document.getElementById('vGrid').className='p-1.5 rounded bg-[#280b08] text-[#f9e7c9]'; document.getElementById('vList').className='p-1.5 rounded bg-white border border-[#280b08]/20'; }
+    else { c.className='flex flex-col gap-3'; document.getElementById('vList').className='p-1.5 rounded bg-[#280b08] text-[#f9e7c9]'; document.getElementById('vGrid').className='p-1.5 rounded bg-white border border-[#280b08]/20'; }
+    applyFilters();
+  }
+
+  // Check URL params
+  const params = new URLSearchParams(window.location.search);
+  const catParam = params.get('cat');
+  if(catParam) {
+    const cb = document.querySelector(`.cat-cb[value="${catParam}"]`);
+    if(cb) cb.checked = true;
+    document.getElementById('shopTitle').textContent = catParam.charAt(0).toUpperCase()+catParam.slice(1);
+  }
+  const searchParam = params.get('search');
+  if(searchParam) document.getElementById('shopTitle').textContent = 'Results for "'+searchParam+'"';
+
+  document.querySelectorAll('.cat-cb').forEach(cb=>cb.addEventListener('change', applyFilters));
+  applyFilters();
+</script>
+</body>
+</html>
