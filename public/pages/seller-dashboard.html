@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seller Dashboard — Kata Kara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>.primary-btn{background:#f2d04e;color:#280b08}.primary-btn:hover{background:#e6c23d}.dark-btn{background:#280b08;color:#f9e7c9}.dark-btn:hover{background:#3d1209}#toast{transition:opacity .3s,transform .3s;transform:translateY(20px)}</style>
+</head>
+<body class="bg-[#f9e7c9] text-[#280b08]">
+
+<!-- DASH HEADER -->
+<header class="bg-[#280b08] text-[#f9e7c9] shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <a href="../index.html" class="flex items-center gap-2">
+      <i class="fa-solid fa-bag-shopping text-[#f2d04e] text-xl"></i>
+      <span class="text-lg font-bold text-[#f2d04e]">KATA KARA</span>
+      <span class="text-xs text-[#f9e7c9]/50 ml-2">Seller Centre</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-full text-sm">
+        <div class="w-6 h-6 bg-[#f2d04e] rounded-full flex items-center justify-center text-[#280b08] font-bold text-xs">CS</div>
+        <span>Chidi's Store</span>
+      </div>
+      <a href="../index.html" class="text-xs text-[#f9e7c9]/60 hover:text-[#f2d04e]"><i class="fa fa-external-link-alt mr-1"></i>View Store</a>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 flex gap-1 text-sm overflow-x-auto">
+      <button onclick="showTab('overview')" id="nav-overview" class="py-3 px-4 whitespace-nowrap text-[#f2d04e] border-b-2 border-[#f2d04e]">Overview</button>
+      <button onclick="showTab('products')" id="nav-products" class="py-3 px-4 hover:text-[#f2d04e] whitespace-nowrap opacity-70">Products</button>
+      <button onclick="showTab('orders')" id="nav-orders" class="py-3 px-4 hover:text-[#f2d04e] whitespace-nowrap opacity-70">Orders</button>
+      <button onclick="showTab('analytics')" id="nav-analytics" class="py-3 px-4 hover:text-[#f2d04e] whitespace-nowrap opacity-70">Analytics</button>
+      <button onclick="showTab('payouts')" id="nav-payouts" class="py-3 px-4 hover:text-[#f2d04e] whitespace-nowrap opacity-70">Payouts</button>
+      <button onclick="showTab('settings')" id="nav-settings" class="py-3 px-4 hover:text-[#f2d04e] whitespace-nowrap opacity-70">Settings</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-6">
+
+  <!-- OVERVIEW -->
+  <div id="tab-overview">
+    <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+      <div>
+        <h1 class="text-xl font-bold">Good morning, Chidi! 👋</h1>
+        <p class="text-sm text-gray-500">Here's what's happening with your store today.</p>
+      </div>
+      <button onclick="showTab('add-product')" class="primary-btn px-5 py-2.5 rounded-full font-bold text-sm">
+        <i class="fa fa-plus mr-2"></i>Add New Product
+      </button>
+    </div>
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded-xl shadow p-5 border-l-4 border-[#f2d04e]">
+        <p class="text-xs text-gray-400 uppercase tracking-widest">Revenue</p>
+        <p class="text-2xl font-bold text-[#280b08] mt-1">₦2.4M</p>
+        <p class="text-xs text-green-600 mt-1"><i class="fa fa-arrow-up mr-1"></i>18% this month</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 border-l-4 border-blue-400">
+        <p class="text-xs text-gray-400 uppercase tracking-widest">Orders</p>
+        <p class="text-2xl font-bold text-[#280b08] mt-1">342</p>
+        <p class="text-xs text-green-600 mt-1"><i class="fa fa-arrow-up mr-1"></i>24 new today</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 border-l-4 border-amber-400">
+        <p class="text-xs text-gray-400 uppercase tracking-widest">Products</p>
+        <p class="text-2xl font-bold text-[#280b08] mt-1">89</p>
+        <p class="text-xs text-red-500 mt-1"><i class="fa fa-exclamation-circle mr-1"></i>5 low stock</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 border-l-4 border-green-400">
+        <p class="text-xs text-gray-400 uppercase tracking-widest">Rating</p>
+        <p class="text-2xl font-bold text-[#280b08] mt-1">4.8 <i class="fa fa-star text-yellow-400 text-lg"></i></p>
+        <p class="text-xs text-gray-400 mt-1">128 reviews</p>
+      </div>
+    </div>
+    <!-- Recent Orders -->
+    <div class="bg-white rounded-xl shadow mb-5">
+      <div class="flex items-center justify-between px-5 py-4 border-b border-[#280b08]/10">
+        <h3 class="font-bold">Recent Orders</h3>
+        <button onclick="showTab('orders')" class="text-xs text-blue-600 hover:underline">View All →</button>
+      </div>
+      <div class="divide-y divide-[#280b08]/5 text-sm">
+        <div class="px-5 py-3 flex items-center gap-3 flex-wrap"><span class="text-gray-400 text-xs w-20 shrink-0">#KK-7821</span><span class="flex-1 font-medium min-w-28">iPhone 15 Pro Max</span><span class="text-gray-500 text-xs min-w-20">Amaka O.</span><span class="text-[#280b08] font-bold text-xs">₦1,200,000</span><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Delivered</span></div>
+        <div class="px-5 py-3 flex items-center gap-3 flex-wrap"><span class="text-gray-400 text-xs w-20 shrink-0">#KK-7820</span><span class="flex-1 font-medium min-w-28">Samsung TV 55"</span><span class="text-gray-500 text-xs min-w-20">Tunde B.</span><span class="text-[#280b08] font-bold text-xs">₦480,000</span><span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Shipped</span></div>
+        <div class="px-5 py-3 flex items-center gap-3 flex-wrap"><span class="text-gray-400 text-xs w-20 shrink-0">#KK-7819</span><span class="flex-1 font-medium min-w-28">PS5 Console</span><span class="text-gray-500 text-xs min-w-20">Emeka R.</span><span class="text-[#280b08] font-bold text-xs">₦550,000</span><span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">Processing</span></div>
+        <div class="px-5 py-3 flex items-center gap-3 flex-wrap"><span class="text-gray-400 text-xs w-20 shrink-0">#KK-7818</span><span class="flex-1 font-medium min-w-28">Nike Air Max</span><span class="text-gray-500 text-xs min-w-20">Simi L.</span><span class="text-[#280b08] font-bold text-xs">₦62,000</span><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Delivered</span></div>
+      </div>
+    </div>
+    <!-- Top products -->
+    <div class="bg-white rounded-xl shadow">
+      <div class="px-5 py-4 border-b border-[#280b08]/10"><h3 class="font-bold">Top Selling Products</h3></div>
+      <div class="divide-y divide-[#280b08]/5 text-sm">
+        <div class="px-5 py-3 flex items-center gap-4"><i class="fa fa-mobile-alt text-2xl text-[#280b08] opacity-40 w-8"></i><div class="flex-1"><p class="font-medium">iPhone 15 Pro Max</p><p class="text-xs text-gray-400">Electronics · 124 sold</p></div><p class="font-bold text-[#280b08]">₦1,200,000</p></div>
+        <div class="px-5 py-3 flex items-center gap-4"><i class="fa fa-gamepad text-2xl text-[#280b08] opacity-40 w-8"></i><div class="flex-1"><p class="font-medium">PlayStation 5</p><p class="text-xs text-gray-400">Electronics · 88 sold</p></div><p class="font-bold text-[#280b08]">₦550,000</p></div>
+        <div class="px-5 py-3 flex items-center gap-4"><i class="fa fa-tv text-2xl text-[#280b08] opacity-40 w-8"></i><div class="flex-1"><p class="font-medium">Samsung 55" QLED TV</p><p class="text-xs text-gray-400">Electronics · 62 sold</p></div><p class="font-bold text-[#280b08]">₦480,000</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD PRODUCT -->
+  <div id="tab-add-product" class="hidden">
+    <div class="flex items-center gap-3 mb-6">
+      <button onclick="showTab('products')" class="text-[#280b08] hover:underline text-sm"><i class="fa fa-arrow-left mr-1"></i>Back</button>
+      <h2 class="text-xl font-bold">Add New Product</h2>
+    </div>
+    <div class="bg-white rounded-2xl shadow p-6 max-w-2xl">
+      <div class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Product Name *</label><input type="text" id="np-name" placeholder="e.g. Samsung Galaxy S24" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+          <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Category *</label>
+            <select id="np-cat" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]">
+              <option value="electronics">Electronics</option><option value="fashion">Fashion</option><option value="home">Home & Kitchen</option><option value="beauty">Health & Beauty</option><option value="sports">Sports</option><option value="camera">Camera</option><option value="furniture">Furniture</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Price (₦) *</label><input type="number" id="np-price" placeholder="0" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none"/></div>
+          <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Old Price (₦)</label><input type="number" id="np-old" placeholder="0" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none"/></div>
+          <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Stock Qty *</label><input type="number" id="np-qty" placeholder="1" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none"/></div>
+        </div>
+        <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Description *</label><textarea id="np-desc" rows="4" placeholder="Describe your product in detail — include key features, condition, specifications..." class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none resize-none"></textarea></div>
+        <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Brand</label><input type="text" placeholder="e.g. Apple, Samsung, Nike..." class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none"/></div>
+        <div>
+          <label class="block text-xs font-semibold mb-2 text-gray-500 uppercase tracking-widest">Delivery Options</label>
+          <div class="flex gap-4 text-sm flex-wrap">
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-[#280b08]" checked/> Free Shipping</label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-[#280b08]"/> Express Delivery</label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-[#280b08]"/> Same Day (Lagos)</label>
+          </div>
+        </div>
+        <div class="flex gap-3 pt-2">
+          <button onclick="publishProduct()" class="primary-btn flex-1 py-3 rounded-full font-bold text-sm"><i class="fa fa-upload mr-2"></i>Publish Product</button>
+          <button class="border-2 border-[#280b08] px-6 py-3 rounded-full font-semibold text-sm hover:bg-amber-100">Save Draft</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS LIST -->
+  <div id="tab-products" class="hidden">
+    <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
+      <h2 class="text-xl font-bold">My Products <span class="text-base text-gray-400 font-normal">(89)</span></h2>
+      <button onclick="showTab('add-product')" class="primary-btn px-5 py-2.5 rounded-full font-bold text-sm"><i class="fa fa-plus mr-2"></i>Add Product</button>
+    </div>
+    <div class="bg-white rounded-xl shadow">
+      <div class="px-5 py-3 border-b border-[#280b08]/10 flex gap-3 flex-wrap">
+        <input type="text" placeholder="Search products..." class="border border-[#280b08]/20 rounded-full px-4 py-1.5 text-sm bg-[#f9e7c9] focus:outline-none w-52"/>
+        <select class="border border-[#280b08]/20 rounded-full px-3 py-1.5 text-sm bg-[#f9e7c9] focus:outline-none"><option>All Categories</option><option>Electronics</option><option>Fashion</option></select>
+      </div>
+      <div class="divide-y divide-[#280b08]/5 text-sm" id="productsList">
+        <div class="px-5 py-4 flex items-center gap-4 flex-wrap"><i class="fa fa-mobile-alt text-2xl text-[#280b08]/40 w-8"></i><div class="flex-1 min-w-32"><p class="font-semibold">iPhone 15 Pro Max</p><p class="text-xs text-gray-400">Electronics · Stock: 8</p></div><span class="font-bold text-sm">₦1,200,000</span><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Active</span><div class="flex gap-2"><button class="border px-3 py-1 rounded-lg text-xs hover:bg-amber-50"><i class="fa fa-edit mr-1"></i>Edit</button><button onclick="this.closest('.flex').parentElement.remove();showToast('Product deleted')" class="border border-red-200 text-red-500 px-3 py-1 rounded-lg text-xs hover:bg-red-50"><i class="fa fa-trash mr-1"></i>Delete</button></div></div>
+        <div class="px-5 py-4 flex items-center gap-4 flex-wrap"><i class="fa fa-gamepad text-2xl text-[#280b08]/40 w-8"></i><div class="flex-1 min-w-32"><p class="font-semibold">PlayStation 5</p><p class="text-xs text-gray-400">Electronics · Stock: 3</p></div><span class="font-bold text-sm">₦550,000</span><span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">Low Stock</span><div class="flex gap-2"><button class="border px-3 py-1 rounded-lg text-xs hover:bg-amber-50"><i class="fa fa-edit mr-1"></i>Edit</button><button onclick="this.closest('.flex').parentElement.remove();showToast('Product deleted')" class="border border-red-200 text-red-500 px-3 py-1 rounded-lg text-xs hover:bg-red-50"><i class="fa fa-trash mr-1"></i>Delete</button></div></div>
+        <div class="px-5 py-4 flex items-center gap-4 flex-wrap"><i class="fa fa-tv text-2xl text-[#280b08]/40 w-8"></i><div class="flex-1 min-w-32"><p class="font-semibold">Samsung 55" QLED TV</p><p class="text-xs text-gray-400">Electronics · Stock: 12</p></div><span class="font-bold text-sm">₦480,000</span><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Active</span><div class="flex gap-2"><button class="border px-3 py-1 rounded-lg text-xs hover:bg-amber-50"><i class="fa fa-edit mr-1"></i>Edit</button><button onclick="this.closest('.flex').parentElement.remove();showToast('Product deleted')" class="border border-red-200 text-red-500 px-3 py-1 rounded-lg text-xs hover:bg-red-50"><i class="fa fa-trash mr-1"></i>Delete</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDERS -->
+  <div id="tab-orders" class="hidden">
+    <h2 class="text-xl font-bold mb-5">Orders <span class="text-base text-gray-400 font-normal">(342)</span></h2>
+    <div class="flex gap-2 mb-4 flex-wrap">
+      <button class="text-sm px-4 py-1.5 bg-[#280b08] text-[#f9e7c9] rounded-full">All</button>
+      <button class="text-sm px-4 py-1.5 border border-[#280b08]/20 rounded-full hover:bg-amber-100">Processing</button>
+      <button class="text-sm px-4 py-1.5 border border-[#280b08]/20 rounded-full hover:bg-amber-100">Shipped</button>
+      <button class="text-sm px-4 py-1.5 border border-[#280b08]/20 rounded-full hover:bg-amber-100">Delivered</button>
+    </div>
+    <div class="bg-white rounded-xl shadow divide-y divide-[#280b08]/5 text-sm">
+      <div class="px-5 py-3 flex items-center gap-3 flex-wrap"><span class="text-gray-400 text-xs w-20">#KK-7821</span><span class="flex-1 font-medium min-w-28">iPhone 15 Pro Max</span><span class="text-gray-500 text-xs">Amaka O. · Lagos</span><span class="font-bold text-xs">₦1,200,000</span><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Delivered</span><button class="text-xs text-blue-600 hover:underline">View</button></div>
+      <div class="px-5 py-3 flex items-center gap-3 flex-wrap"><span class="text-gray-400 text-xs w-20">#KK-7820</span><span class="flex-1 font-medium min-w-28">Samsung TV 55"</span><span class="text-gray-500 text-xs">Tunde B. · Abuja</span><span class="font-bold text-xs">₦480,000</span><span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Shipped</span><button class="text-xs text-blue-600 hover:underline">View</button></div>
+      <div class="px-5 py-3 flex items-center gap-3 flex-wrap"><span class="text-gray-400 text-xs w-20">#KK-7819</span><span class="flex-1 font-medium min-w-28">PS5 Console</span><span class="text-gray-500 text-xs">Emeka R. · PH</span><span class="font-bold text-xs">₦550,000</span><span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">Processing</span><button class="text-xs text-blue-600 hover:underline">View</button></div>
+      <div class="px-5 py-3 flex items-center gap-3 flex-wrap"><span class="text-gray-400 text-xs w-20">#KK-7818</span><span class="flex-1 font-medium min-w-28">Nike Air Max</span><span class="text-gray-500 text-xs">Simi L. · Lagos</span><span class="font-bold text-xs">₦62,000</span><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Delivered</span><button class="text-xs text-blue-600 hover:underline">View</button></div>
+    </div>
+  </div>
+
+  <!-- ANALYTICS -->
+  <div id="tab-analytics" class="hidden">
+    <h2 class="text-xl font-bold mb-5">Analytics</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded-xl shadow p-4 text-center"><p class="text-2xl font-bold text-[#280b08]">12,450</p><p class="text-xs text-gray-500 mt-1">Store Visits</p><p class="text-xs text-green-600">↑ 32%</p></div>
+      <div class="bg-white rounded-xl shadow p-4 text-center"><p class="text-2xl font-bold">8.4%</p><p class="text-xs text-gray-500 mt-1">Conversion Rate</p><p class="text-xs text-green-600">↑ 1.2%</p></div>
+      <div class="bg-white rounded-xl shadow p-4 text-center"><p class="text-2xl font-bold">₦28.5K</p><p class="text-xs text-gray-500 mt-1">Avg Order Value</p><p class="text-xs text-green-600">↑ 5%</p></div>
+      <div class="bg-white rounded-xl shadow p-4 text-center"><p class="text-2xl font-bold">94%</p><p class="text-xs text-gray-500 mt-1">Customer Satisfaction</p><p class="text-xs text-green-600">↑ 2%</p></div>
+    </div>
+    <div class="bg-white rounded-xl shadow p-5">
+      <h3 class="font-bold mb-4">Monthly Revenue</h3>
+      <div class="flex items-end gap-2 h-40">
+        <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-amber-200 rounded-t" style="height:40%"></div><span class="text-xs text-gray-400">Jan</span></div>
+        <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-amber-300 rounded-t" style="height:55%"></div><span class="text-xs text-gray-400">Feb</span></div>
+        <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-amber-400 rounded-t" style="height:48%"></div><span class="text-xs text-gray-400">Mar</span></div>
+        <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#f2d04e] rounded-t" style="height:68%"></div><span class="text-xs text-gray-400">Apr</span></div>
+        <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#e6c23d] rounded-t" style="height:62%"></div><span class="text-xs text-gray-400">May</span></div>
+        <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-amber-600 rounded-t" style="height:78%"></div><span class="text-xs text-gray-400">Jun</span></div>
+        <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-amber-700 rounded-t" style="height:88%"></div><span class="text-xs text-gray-400">Jul</span></div>
+        <div class="flex-1 flex flex-col items-center gap-1"><div class="w-full bg-[#280b08] rounded-t" style="height:100%"></div><span class="text-xs text-gray-400">Aug</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYOUTS -->
+  <div id="tab-payouts" class="hidden">
+    <h2 class="text-xl font-bold mb-5">Payouts</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-white rounded-xl shadow p-5 border-l-4 border-green-400"><p class="text-xs text-gray-400 uppercase tracking-widest">Available Balance</p><p class="text-3xl font-bold mt-1">₦485,000</p><button onclick="showToast('Withdrawal request sent!')" class="mt-3 primary-btn px-4 py-2 rounded-full text-xs font-bold">Withdraw Now</button></div>
+      <div class="bg-white rounded-xl shadow p-5"><p class="text-xs text-gray-400 uppercase tracking-widest">Pending</p><p class="text-3xl font-bold mt-1">₦120,000</p><p class="text-xs text-gray-400 mt-1">Clears in 2 days</p></div>
+      <div class="bg-white rounded-xl shadow p-5"><p class="text-xs text-gray-400 uppercase tracking-widest">Total Paid Out</p><p class="text-3xl font-bold mt-1">₦1,795,000</p><p class="text-xs text-gray-400 mt-1">All time</p></div>
+    </div>
+    <div class="bg-white rounded-xl shadow">
+      <div class="px-5 py-4 border-b border-[#280b08]/10"><h3 class="font-bold">Payout History</h3></div>
+      <div class="divide-y divide-[#280b08]/5 text-sm">
+        <div class="px-5 py-3 flex items-center justify-between"><div><p class="font-medium">Bank Transfer</p><p class="text-xs text-gray-400">Apr 10, 2025 · First Bank ****4521</p></div><div class="text-right"><p class="font-bold text-green-600">+₦350,000</p><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Completed</span></div></div>
+        <div class="px-5 py-3 flex items-center justify-between"><div><p class="font-medium">Bank Transfer</p><p class="text-xs text-gray-400">Apr 3, 2025 · First Bank ****4521</p></div><div class="text-right"><p class="font-bold text-green-600">+₦285,000</p><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Completed</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div id="tab-settings" class="hidden">
+    <h2 class="text-xl font-bold mb-5">Store Settings</h2>
+    <div class="bg-white rounded-2xl shadow p-6 max-w-xl space-y-4">
+      <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Store Name</label><input type="text" value="Chidi's Electronics Store" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none"/></div>
+      <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Store Description</label><textarea rows="3" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none resize-none">Premium electronics and gadgets at the best prices in Nigeria.</textarea></div>
+      <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Business Address</label><input type="text" value="14 Broad Street, Lagos Island, Lagos" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none"/></div>
+      <div><label class="block text-xs font-semibold mb-2 text-gray-500 uppercase tracking-widest">Bank Account (Payouts)</label><input type="text" placeholder="Account Number" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none mb-2"/><select class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none"><option>First Bank</option><option>GTBank</option><option>Access Bank</option><option>Zenith Bank</option><option>UBA</option></select></div>
+      <button onclick="showToast('Settings saved successfully!')" class="primary-btn px-6 py-3 rounded-full font-bold text-sm">Save Changes</button>
+    </div>
+  </div>
+
+</main>
+
+<div id="toast" class="fixed bottom-6 right-6 bg-[#280b08] text-[#f9e7c9] px-5 py-3 rounded-xl shadow-xl text-sm z-50 opacity-0 pointer-events-none flex items-center gap-2" style="transition:opacity .3s,transform .3s;transform:translateY(20px)">
+  <i class="fa fa-check-circle text-[#f2d04e]"></i><span id="toastMsg">Done!</span>
+</div>
+
+<script src="../js/shared.js"></script>
+<script>
+const tabs = ['overview','products','orders','analytics','payouts','settings','add-product'];
+function showTab(t) {
+  tabs.forEach(id => {
+    const el = document.getElementById('tab-'+id); if(el) el.classList.add('hidden');
+    const nav = document.getElementById('nav-'+id);
+    if(nav) { nav.className = 'py-3 px-4 hover:text-[#f2d04e] whitespace-nowrap opacity-70'; }
+  });
+  document.getElementById('tab-'+t)?.classList.remove('hidden');
+  const nav = document.getElementById('nav-'+t);
+  if(nav) nav.className = 'py-3 px-4 whitespace-nowrap text-[#f2d04e] border-b-2 border-[#f2d04e]';
+}
+
+function publishProduct() {
+  const name = document.getElementById('np-name').value.trim();
+  const price = document.getElementById('np-price').value;
+  if(!name || !price) { showToast('Please fill in required fields'); return; }
+  showToast('Product "'+name+'" published!');
+  setTimeout(()=>showTab('products'), 800);
+}
+</script>
+</body>
+</html>

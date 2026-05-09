@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>Wishlist — Kata Kara</title><script src="https://cdn.tailwindcss.com"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/><style>.primary-btn{background:#f2d04e;color:#280b08}.dark-btn{background:#280b08;color:#f9e7c9}.card-hover{transition:transform .2s,box-shadow .2s}.card-hover:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(40,11,8,.12)}#toast{transition:opacity .3s,transform .3s}</style></head>
+<body class="bg-[#f9e7c9] text-[#280b08]">
+<script src="../js/header.js"></script>
+<div class="max-w-5xl mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-6 flex items-center gap-2"><i class="fa fa-heart text-red-400"></i> My Wishlist</h1>
+  <div id="wishEmpty" class="hidden text-center py-20"><i class="fa-regular fa-heart text-6xl text-gray-300 mb-4 block"></i><p class="text-xl font-semibold text-gray-400">Your wishlist is empty</p><a href="shop.html" class="inline-block mt-6 primary-btn px-8 py-3 rounded-full font-semibold">Explore Products</a></div>
+  <div id="wishGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+</div>
+<script src="../js/footer.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+  function renderWish(){
+    const ids=getWish();
+    const wishGrid=document.getElementById('wishGrid');
+    const wishEmpty=document.getElementById('wishEmpty');
+    if(!ids.length){wishEmpty.classList.remove('hidden');wishGrid.innerHTML='';return;}
+    wishEmpty.classList.add('hidden');
+    const items=PRODUCTS.filter(p=>ids.includes(p.id));
+    wishGrid.innerHTML=items.map(p=>productCardHTML(p)).join('');
+  }
+  renderWish();
+</script>
+</body></html>

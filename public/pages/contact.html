@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Kata Kara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>.primary-btn{background:#f2d04e;color:#280b08}.primary-btn:hover{background:#e6c23d}.dark-btn{background:#280b08;color:#f9e7c9}#toast{transition:opacity .3s,transform .3s;transform:translateY(20px)}</style>
+</head>
+<body class="bg-[#f9e7c9] text-[#280b08]">
+<script src="../js/header.js"></script>
+<div class="max-w-7xl mx-auto px-4 py-6">
+  <div class="text-sm text-gray-500 mb-6"><a href="../index.html" class="hover:text-[#280b08]">Home</a> <i class="fa fa-chevron-right text-xs mx-1"></i> <span class="font-medium text-[#280b08]">Contact Us</span></div>
+  <div class="grid md:grid-cols-2 gap-10">
+    <!-- Form -->
+    <div class="bg-white rounded-2xl shadow p-8">
+      <h1 class="text-2xl font-bold mb-2">Get in Touch</h1>
+      <p class="text-sm text-gray-500 mb-6">We're here to help. Send us a message and we'll respond within 24 hours.</p>
+      <div class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Name</label><input type="text" placeholder="Your name" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+          <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Email</label><input type="email" placeholder="you@example.com" class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none focus:ring-2 focus:ring-[#280b08]"/></div>
+        </div>
+        <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Subject</label>
+          <select class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none">
+            <option>Order Issue</option><option>Seller Support</option><option>Payment Problem</option><option>Returns & Refunds</option><option>General Inquiry</option><option>Report a Seller</option>
+          </select>
+        </div>
+        <div><label class="block text-xs font-semibold mb-1 text-gray-500 uppercase tracking-widest">Message</label><textarea rows="5" placeholder="Describe your issue or question in detail..." class="w-full border border-[#280b08]/20 rounded-xl px-4 py-3 text-sm bg-[#f9e7c9] focus:outline-none resize-none"></textarea></div>
+        <button onclick="showToast('Message sent! We\'ll reply within 24 hours.')" class="dark-btn w-full py-3 rounded-full font-bold text-sm">Send Message <i class="fa fa-paper-plane ml-2"></i></button>
+      </div>
+    </div>
+    <!-- Info -->
+    <div class="space-y-5">
+      <div class="bg-white rounded-xl shadow p-5 flex items-start gap-4">
+        <div class="w-12 h-12 bg-[#f2d04e] rounded-full flex items-center justify-center shrink-0"><i class="fa fa-map-marker-alt text-[#280b08]"></i></div>
+        <div><h3 class="font-bold mb-1">Head Office</h3><p class="text-sm text-gray-600">14 Broad Street, Lagos Island<br/>Lagos, Nigeria 101001</p></div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 flex items-start gap-4">
+        <div class="w-12 h-12 bg-[#f2d04e] rounded-full flex items-center justify-center shrink-0"><i class="fa fa-phone text-[#280b08]"></i></div>
+        <div><h3 class="font-bold mb-1">Phone</h3><p class="text-sm text-gray-600">+234 800 KATA KARA<br/>+234 01 234 5678</p></div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 flex items-start gap-4">
+        <div class="w-12 h-12 bg-[#f2d04e] rounded-full flex items-center justify-center shrink-0"><i class="fa fa-envelope text-[#280b08]"></i></div>
+        <div><h3 class="font-bold mb-1">Email</h3><p class="text-sm text-gray-600">support@katakara.ng<br/>sellers@katakara.ng</p></div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-5 flex items-start gap-4">
+        <div class="w-12 h-12 bg-[#f2d04e] rounded-full flex items-center justify-center shrink-0"><i class="fa fa-clock text-[#280b08]"></i></div>
+        <div><h3 class="font-bold mb-1">Support Hours</h3><p class="text-sm text-gray-600">Mon–Fri: 8am – 8pm<br/>Sat–Sun: 9am – 6pm</p></div>
+      </div>
+      <div class="bg-[#280b08] text-[#f9e7c9] rounded-xl p-5">
+        <h3 class="font-bold mb-3 text-[#f2d04e]">Live Chat</h3>
+        <p class="text-sm opacity-70 mb-3">For urgent issues, chat with our support team in real time.</p>
+        <button onclick="showToast('Live chat launching...')" class="primary-btn px-5 py-2 rounded-full text-sm font-bold"><i class="fa fa-comment mr-2"></i>Start Live Chat</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/footer.js"></script>
+<script src="../js/shared.js"></script>
+</body>
+</html>
